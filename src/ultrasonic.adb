@@ -89,13 +89,13 @@ procedure ultrasonic is
    end Calculate_Distance;
 
 
+
 begin
 
    --  Initialize the GPIO pins
-   Configure_IO(Trig_Pin, Trig_Config);  --  PA0 as output
-   Configure_IO(Echo_Pin, Echo_Config);  --  PA1 as input with pull-down
-   -- Configure_Trigger(Trig_Pin, Event_Falling_Edge, 0);
-   -- Configure_Trigger(Echo_Pin, Event_Rising_Edge, 1);
+   Configure_IO(Trig_Pin, Trig_Config);  --  PD0 as output
+   Configure_IO(Echo_Pin, Echo_Config);  --  PC1 as input with pull-down
+
 
    loop
       Trigger_Sensor;
@@ -103,10 +103,12 @@ begin
          Echo_Time : constant Ada.Real_Time.Time_Span := Get_Echo_Time;
          Distance  : constant Float := Calculate_Distance(Echo_Time);
          Message   : constant String := "Distance: " & Float'Image(Distance) & "cm";
+
       begin
          --  Output the calculated distance (for now we use yhe STM32 screen to see the outputs)
          --  HAL.UART.Transmit(Message);
          Screen_Draw.WriteMsg(Message);
+
       end;
       delay until Clock + Delay_sec;  --  Delay 1 second before the next measurement
    end loop;
