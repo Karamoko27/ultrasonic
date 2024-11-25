@@ -1,0 +1,22 @@
+name = "ultrasonic"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Karamoko"]
+maintainers = ["Karamoko <kara.2002@hotmail.fr>"]
+maintainers-logins = ["Karamoko27"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["ultrasonic"]
+
+[[depends-on]]
+stm32f429disco = "0.1.0"
+stm32_gui = "0.1.0"
+
+
+[[pins]]
+gnat_arm_elf = { version='12.2.1' }
+
+
